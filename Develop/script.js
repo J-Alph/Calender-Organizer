@@ -23,14 +23,11 @@ var note = localStorage.getItem("note")
 var vargas = localStorage.getItem("vargas")
 
 
-
+// Adds current time at the headers
 function timer() {
   setInterval(function () {
-    var currTime = dayjs().format("MMM DD, YYYY [at] hh:mm:ss a")
+    var currTime = dayjs().format("MMM DD, YYYY")
     currDay.text(currTime);
-
-    if(currTime)
-    timeBar.attr("class", "future")
 
   }, 1000);
 }
@@ -39,16 +36,63 @@ timer();
 
 
 
+// creates a function for time later use to compare to the id of each block 
+// condiitonal statements added to check current time to affect attributes
 
 function timeCompare() {
   setInterval(function () {
-    var hourCompare = dayjs().format("hh:mm:ss")
-    console.log(hourCompare)
+    var xTime = dayjs().format("hh")
+    console.log(xTime)
+
+    console.log($(this))
+
+    $('.time-block').each(function () {
+
+      var bartimer = $(this).attr("id").split("-")[1];
+      console.log(bartimer, xTime)
+
+
+      if (bartimer === xTime) {
+
+        $(this).addClass("present");
+        $(this).removeClass("past");
+        $(this).removeClass("future");
+
+        // console.log($(this))
+        //   timeBar.attr("class", "present")
+        // if (bartimer < xTime)
+        //   timeBar.attr("class", "past")
+        //   if(bartimer> xTime)
+        //   timeBar.attr("class", "future")
+      }if (bartimer < xTime) {
+        $(this).removeClass("present")
+        $(this).removeClass("future")
+        $(this).addClass("past")
+
+        console.log($(this))
+      }
+      
+      if (bartimer > xTime) {
+        $(this).removeClass("present")
+        $(this).removeClass("past")
+        $(this).addClass("future")
+
+
+      }
+
+
+
+
+    }
+
+    )
+
+
 
     // if(currTime)
     // timeBar.attr("class", "future")
 
-  }, 1000);
+  }, 5000);
 }
 
 timeCompare();
@@ -68,12 +112,6 @@ $(document).ready(function () {
 
     var siblingValue = $(this).siblings()[1].value
 
-
-
-
-
-
-
     console.log($(this).parent())
 
     console.log(parentValue)
@@ -89,7 +127,7 @@ $(document).ready(function () {
 
     // timeBar.append(vargas);
 
- 
+
 
 
   })
