@@ -3,20 +3,34 @@
 // in the html.
 
 var hour8 = $("#hour-8");
+var hour9 = localStorage.getItem("hour-9")
+var hour10 = localStorage.getItem("hour-10")
+var hour11 = localStorage.getItem("hour-11");
+var hour12 = localStorage.getItem("hour-12");
+var hour13 = localStorage.getItem("hour-13");
+var hour14 = localStorage.getItem("hour-14");
+var hour15 = localStorage.getItem("hour-15");
+var hour16 = localStorage.getItem("hour-16");
+var hour17 = localStorage.getItem("hour-17");
+
+
 var currDay = $("#currentDay")
-var timeBar = $("#hour-8")
+var timeBar = $("id")
+var hour15 = $("#hour15");
+
 
 var note = localStorage.getItem("note")
+var vargas = localStorage.getItem("vargas")
 
 
-console.log(hour8)
 
+function timer() {
+  setInterval(function () {
+    var currTime = dayjs().format("MMM DD, YYYY [at] hh:mm:ss a")
+    currDay.text(currTime);
 
-function timer(){
-   setInterval(function() {
-      var currTime = dayjs().format("MMM DD, YYYY [at] hh:mm:ss a")
-      currDay.text(currTime);
-
+    if(currTime)
+    timeBar.attr("class", "future")
 
   }, 1000);
 }
@@ -25,29 +39,62 @@ timer();
 
 
 
-function greenEggs(){
-  timeBar.attr("class", 'present');
-  console.log("happy")
+
+function timeCompare() {
+  setInterval(function () {
+    var hourCompare = dayjs().format("hh:mm:ss")
+    console.log(hourCompare)
+
+    // if(currTime)
+    // timeBar.attr("class", "future")
+
+  }, 1000);
 }
 
+timeCompare();
 
-$(document).ready(function(){
-$(".saveBtn").click(function(){
+
+
+
+
+
+
+
+
+$(document).ready(function () {
+  $(".saveBtn").click(function () {
+
+    var parentValue = $(this).parent().attr("id")
+
+    var siblingValue = $(this).siblings()[1].value
+
+
+
+
+
+
+
+    console.log($(this).parent())
+
+    console.log(parentValue)
+    console.log(siblingValue)
+
+    // localStorage.clear()
+    localStorage.setItem(parentValue, siblingValue)
+    localStorage.getItem(parentValue)
+
+
+
+    console.log(window.localStorage)
+
+    // timeBar.append(vargas);
+
  
-var happyday = $(this).parent().attr("id")
-var siblingValue = $(this).siblings()[1].value
 
-console.log(happyday + "2")
-console.log(siblingValue)
 
-localStorage.setItem(happyday, siblingValue)
-localStorage.getItem(happyday, siblingValue)
-
- greenEggs();
-})
+  })
 
 })
-
 
 
 
