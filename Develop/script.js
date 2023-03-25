@@ -41,7 +41,7 @@ timer();
 
 function timeCompare() {
   setInterval(function () {
-    var xTime = dayjs().format("hh")
+    var xTime = dayjs().format("H")
     console.log(xTime)
 
     console.log($(this))
@@ -52,8 +52,8 @@ function timeCompare() {
       // console.log(barId, xTime)
 
 
-      console.log(parseInt(barId))
-
+      // console.log(parseInt(barId))
+      console.log(xTime, barId)
       if (parseInt(barId) < xTime) {
               $(this).removeClass("future")
               $(this).removeClass("present")
