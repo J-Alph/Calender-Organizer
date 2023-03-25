@@ -16,7 +16,7 @@ var hour17 = localStorage.getItem("hour-17");
 
 var currDay = $("#currentDay")
 var timeBar = $("id")
-var hour15 = $("#hour15");
+
 
 
 var note = localStorage.getItem("note")
@@ -48,11 +48,21 @@ function timeCompare() {
 
     $('.time-block').each(function () {
 
-      var bartimer = $(this).attr("id").split("-")[1];
-      console.log(bartimer, xTime)
+      var barId = $(this).attr("id").split("-")[1];
+      // console.log(barId, xTime)
 
 
-      if (bartimer === xTime) {
+      console.log(parseInt(barId))
+
+      if (parseInt(barId) < xTime) {
+              $(this).removeClass("future")
+              $(this).removeClass("present")
+              $(this).addClass("past")
+
+              // console.log($(this))
+            }
+           
+      else if (barId === xTime) {
 
         $(this).addClass("present");
         $(this).removeClass("past");
@@ -60,39 +70,22 @@ function timeCompare() {
 
         // console.log($(this))
         //   timeBar.attr("class", "present")
-        // if (bartimer < xTime)
+        // if (barId < xTime)
         //   timeBar.attr("class", "past")
-        //   if(bartimer> xTime)
+        //   if(barId> xTime)
         //   timeBar.attr("class", "future")
-      }if (bartimer < xTime) {
-        $(this).removeClass("present")
-        $(this).removeClass("future")
-        $(this).addClass("past")
-
-        console.log($(this))
-      }
-      
-      if (bartimer > xTime) {
+      } 
+     
+       else {
+        $(this).addClass("future")
         $(this).removeClass("present")
         $(this).removeClass("past")
-        $(this).addClass("future")
-
-
       }
-
-
-
-
     }
-
     )
-
-
-
     // if(currTime)
-    // timeBar.attr("class", "future")
-
-  }, 5000);
+    // timeBar.attr("class", "future
+  }, 2000);
 }
 
 timeCompare();
