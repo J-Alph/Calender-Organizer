@@ -2,28 +2,16 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
-var hour8 = $("#hour-8");
-var hour9 = localStorage.getItem("hour-9")
-var hour10 = localStorage.getItem("hour-10")
-var hour11 = localStorage.getItem("hour-11");
-var hour12 = localStorage.getItem("hour-12");
-var hour13 = localStorage.getItem("hour-13");
-var hour14 = localStorage.getItem("hour-14");
-var hour15 = localStorage.getItem("hour-15");
-var hour16 = localStorage.getItem("hour-16");
-var hour17 = localStorage.getItem("hour-17");
-
 
 var currDay = $("#currentDay")
-var timeBar = $("id")
+var timeBar = $("#id")
 
+var work = $("#hour-8")
 
-
-var note = localStorage.getItem("note")
-var vargas = localStorage.getItem("vargas")
 
 
 // Adds current time at the headers
+
 function timer() {
   setInterval(function () {
     var currTime = dayjs().format("MMM DD, YYYY")
@@ -31,9 +19,7 @@ function timer() {
 
   }, 1000);
 }
-
 timer();
-
 
 
 // creates a function for time later use to compare to the id of each block 
@@ -42,9 +28,9 @@ timer();
 function timeCompare() {
   setInterval(function () {
     var xTime = dayjs().format("H")
-    console.log(xTime)
+    // console.log(xTime)
 
-    console.log($(this))
+    // console.log($(this))
 
     $('.time-block').each(function () {
 
@@ -53,30 +39,24 @@ function timeCompare() {
 
 
       // console.log(parseInt(barId))
-      console.log(xTime, barId)
-      if (parseInt(barId) < xTime) {
-              $(this).removeClass("future")
-              $(this).removeClass("present")
-              $(this).addClass("past")
 
-              // console.log($(this))
-            }
-           
+      if (parseInt(barId) < xTime) {
+        $(this).removeClass("future")
+        $(this).removeClass("present")
+        $(this).addClass("past")
+
+        // console.log($(this))
+      }
+
       else if (barId === xTime) {
 
         $(this).addClass("present");
         $(this).removeClass("past");
         $(this).removeClass("future");
 
-        // console.log($(this))
-        //   timeBar.attr("class", "present")
-        // if (barId < xTime)
-        //   timeBar.attr("class", "past")
-        //   if(barId> xTime)
-        //   timeBar.attr("class", "future")
-      } 
-     
-       else {
+      }
+
+      else {
         $(this).addClass("future")
         $(this).removeClass("present")
         $(this).removeClass("past")
@@ -92,12 +72,6 @@ timeCompare();
 
 
 
-
-
-
-
-
-
 $(document).ready(function () {
   $(".saveBtn").click(function () {
 
@@ -110,28 +84,23 @@ $(document).ready(function () {
     console.log(parentValue)
     console.log(siblingValue)
 
-    // localStorage.clear()
     localStorage.setItem(parentValue, siblingValue)
-    localStorage.getItem(parentValue)
 
-
-
-    console.log(window.localStorage)
-
-    // timeBar.append(vargas);
-
-
-
+    // $(this).siblings()[1].value =localStorage.getItem(hour10)
 
   })
 
+
+  $(function () {
+
+    $("#hour-8 textarea").val(localStorage.getItem("hour-8"))
+    $("#hour-9 textarea").val(localStorage.getItem("hour-9"))
+    $("#hour-10 textarea").val(localStorage.getItem("hour-10"))
+  }
+
+  );
+
 })
-
-
-
-// $(function () )
-
-//   $("currentDay").datepicker()
 
 
   // TODO: Add a listener for click events on the save button. This code should
